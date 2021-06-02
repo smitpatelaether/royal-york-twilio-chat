@@ -45,7 +45,7 @@ $(function() {
   print('Logging in...');
 
   // Get an access token for the current user, passing a username (identity)
-  $.getJSON('/token', function(data) {
+  $.getJSON('/token/' + newUser, function(data) {
 
 
     // Initialize the Chat client
