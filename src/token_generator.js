@@ -2,9 +2,9 @@ const Twilio = require('twilio');
 
 const config = require('./config');
 const nameGenerator = require('../name_generator');
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const newUser = urlParams.get('username');
+// const queryString = window.location.search;
+// const urlParams = new URLSearchParams(queryString);
+// const newUser = urlParams.get('username');
 // Access Token used for Video, IP Messaging, and Sync
 const AccessToken = Twilio.jwt.AccessToken;
 const ChatGrant = AccessToken.ChatGrant;
@@ -29,7 +29,7 @@ function tokenGenerator(identity = 0) {
   );
 
   // Assign the provided identity or generate a new one
-  token.identity = identity || newUser;
+  token.identity = identity || nameGenerator();
 
   // Grant the access token Twilio Video capabilities
   const videoGrant = new VideoGrant();

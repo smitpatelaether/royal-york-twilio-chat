@@ -15,7 +15,7 @@ $(function() {
 
   // The server will assign the client a random username - store that value
   // here
-  var username;
+  var username = newUser;
 
   // Helper function to print info messages to the chat window
   function print(infoMessage, asHtml) {
@@ -65,7 +65,7 @@ $(function() {
       });
 
     // Alert the user they have been assigned a random username
-    username = data.identity;
+    username = newUser;
     print('You have been assigned a random username of: '
     + '<span class="me">' + username + '</span>', true);
 
@@ -90,7 +90,7 @@ $(function() {
     // Get the general chat channel, which is where all the messages are
     // sent in this simple application
     print('Attempting to join "general" chat channel...');
-    chatClient.getChannelByUniqueName('general')
+    chatClient.getChannelByUniqueName(channelName)
     .then(function(channel) {
       generalChannel = channel;
       console.log('Found general channel:');
@@ -100,8 +100,8 @@ $(function() {
       // If it doesn't exist, let's create it
       console.log('Creating general channel');
       chatClient.createChannel({
-        uniqueName: 'general',
-        friendlyName: 'General Chat Channel'
+        uniqueName: channelName,
+        friendlyName: channelName
       }).then(function(channel) {
         console.log('Created general channel:');
         console.log(channel);
